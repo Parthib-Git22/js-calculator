@@ -2,24 +2,12 @@ let string = "";
 let buttons = document.getElementsByTagName("button"); //buttons nodelist
 let display = document.querySelector(".screen");
 
-// const checkLength = (str)=>{
-//     if(str.length > 15){
-//         display.style.fontSize = "3.3rem";
-//         display.value = "max limit";
-//         string = "";
-//     }
-//     else if(str.length > 12){
-//         display.style.fontSize = "2.7rem";
-//     }else{
-//         display.style.fontSize = "3.3rem";
-//     }
-// }
-
 let arr = Array.from(buttons); // button array
 arr.forEach((button) => {
     button.addEventListener("click",()=>{
         if(button.innerText === "="){
             string = eval(string) + "";
+            if(string.includes(".")) string = parseFloat(string).toFixed(3); // upto 3 decimal places in case of fractional numbers
             display.value = string; // show on screen
         }
         else if(button.innerText === "AC"){
@@ -35,7 +23,5 @@ arr.forEach((button) => {
             string += button.innerText;
             display.value = string;
         }
-        // console.log(string);
-        // checkLength(string);
     })
 })
